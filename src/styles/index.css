@@ -5,9 +5,80 @@
     font-weight: <weight>;
     font-style: normal;
   }
+  .jumbotron-container {
+    position: relative;
+    width: 98%;
+    overflow: hidden; 
+    margin: 20px;
+}
+
+
+.jumbotron-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out; 
+}
+
+
+.jumbotron {
+    flex: 0 0 100%; 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+}
+
+.jumbotron::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.jumbotron .container-fluid {
+    position: relative;
+    z-index: 2;
+}
+.navbar {
+    background-color: red;
+}
 .nav-item{
     font-family: "Cinzel", serif;
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
+}
+
+
+.transition-next {
+    animation: slideLeft 0.5s ease-in-out forwards;
+}
+
+.transition-prev {
+    animation: slideRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
 }
