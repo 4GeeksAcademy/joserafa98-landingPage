@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Cards = () => {
     const cardsData = [
@@ -44,48 +44,23 @@ const Cards = () => {
         }
     ];
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [direction, setDirection] = useState(""); 
-    
-
-    const cardsPerPage = 4;
-    const totalPages = Math.ceil(cardsData.length / cardsPerPage);
-
-    const goToNext = () => {
-        setDirection("next");
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % totalPages);
-    };
-
-    const goToPrevious = () => {
-        setDirection("prev");
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + totalPages) % totalPages);
-    };
-
-    const startIndex = currentIndex * cardsPerPage;
-    const currentCards = cardsData.slice(startIndex, startIndex + cardsPerPage);
-
     return (
         <div className="cards container">
             <h1 className="text-center p-4">Ver ahora...</h1>
-            <div className={`row justify-content-center transition-${direction}`}>
-                {currentCards.map((card, index) => (
-                    <div key={index} className="card col-md-3 mx-2" style={{ width: '18rem' }}>
+            <div className="row flex-nowrap">
+                {cardsData.map((card, index) => (
+                    <div key={index} className="card mx-2">
                         <img src={card.imgUrl} className="card-img-top" alt={card.title} />
-                        <div className="card-body">
-                            <h5 className="card-title">{card.title}</h5>
-                            <p className="card-text">{card.description}</p>
-                            <a href="#" className="btn btn-danger">Ver ahora mismo</a>
+                        <div className="card__content">
+                            <p className="card__title">{card.title}</p>
+                            <p className="card__description">{card.description}</p>
                         </div>
                     </div>
                 ))}
-            </div>
-            <div className="d-flex justify-content-between mt-4">
-                <button className="btn btn-outline-secondary" onClick={goToPrevious}>Previous</button>
-                <button className="btn btn-outline-secondary" onClick={goToNext}>Next</button>
             </div>
         </div>
     );
 };
 
-export default Cards;
 
+export default Cards;
